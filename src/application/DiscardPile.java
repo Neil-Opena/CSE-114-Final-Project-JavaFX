@@ -36,4 +36,8 @@ public class DiscardPile {
 	public void resize(){
 		deck = new Card[1];
 	}
+	
+	public Card getLastCard(){
+		return deck[deck.length - 1];
+	}
 }
