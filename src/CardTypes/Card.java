@@ -19,4 +19,6 @@ public abstract class Card {
 	}
 
 	public abstract ImageView getImageView();
+	
+	public abstract ImageView getBackView();
 }
