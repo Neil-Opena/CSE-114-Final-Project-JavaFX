@@ -3,6 +3,8 @@ package application;
 import java.util.Scanner;
 
 import CardTypes.Card;
+import CardTypes.ErnieAndBert;
+import CardTypes.Oscar;
 import CardTypes.Wild;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -37,7 +39,7 @@ public class Main extends Application {
 			Text playerWon = new Text("GAME OVER" + "\nPLAYER WON");
 			StackPane gameOver = new StackPane();
 
-			Scene end = new Scene(gameOver,1400,100);
+			Scene end = new Scene(gameOver, 1400, 100);
 
 			CardDeck first = new CardDeck();
 			first.reset();
@@ -289,7 +291,7 @@ public class Main extends Application {
 					ImageView temp = (ImageView) (e.getTarget());
 					int i = bottomContainer.getChildren().indexOf(temp);
 
-					System.out.println("MATCH: " + discard.getLastCard());
+					System.out.println("Match: " + discard.getLastCard());
 					Card selectedCard = player.getHand()[i];
 					if (selectedCard instanceof Wild) {
 						// add colorpicker
@@ -331,22 +333,45 @@ public class Main extends Application {
 							middle.getChildren().remove(colorPicker);
 						});
 
-
 						player.setValid(true);
 						player.setDrewCard(false);
 					} else if (selectedCard.equals(discard.getLastCard())) {
 						discardPile.setStyle("-fx-background-color: white");
-
 						discardPile.getChildren().add(temp);
 						System.out.println(selectedCard);
 
 						discard.addCard(selectedCard);
 						player.discard(i);
 
-						System.out.println("ADDED TO DISCARD: " + discard.getLastCard());
-						player.setValid(true);
-						player.setDrewCard(false);
+						if (selectedCard instanceof ErnieAndBert) {
+							Card tempCard = deck.drawTop();
+							deck.discard(0);
+
+							deckNum.setText(deck.getDeck().length + "");
+
+							topContainer.getChildren().add(tempCard.getBackView());
+							computer.addCard(tempCard);
+							player.setValid(false);
+							player.setDrewCard(false);
+						} else if (selectedCard instanceof Oscar) {
+							for (int j = 0; j < 2; j++) {
+								Card tempCard = deck.drawTop();
+								deck.discard(0);
+
+								deckNum.setText(deck.getDeck().length + "");
+
+								topContainer.getChildren().add(tempCard.getBackView());
+								computer.addCard(tempCard);
+							}
+							player.setValid(false);
+							player.setDrewCard(false);
+						} else {
+							player.setValid(true);
+							player.setDrewCard(false);
+						}
+
 					}
+					System.out.println(selectedCard);
 				}
 			});
 
@@ -355,7 +380,8 @@ public class Main extends Application {
 					if (player.getHand().length == 0) {
 						gameOver.getChildren().add(playerWon);
 						primaryStage.setScene(end);
-					}System.out.println("PLAYER CARDS: " + player.getHand().length);
+					}
+					System.out.println("Match card: " + discard.getLastCard());
 
 					boolean compValid = false;
 					for (int i = 0; i < computer.getHand().length; i++) {
@@ -382,34 +408,60 @@ public class Main extends Application {
 							compValid = true;
 							break;
 						} else if (temp.equals(discard.getLastCard())) {
-							System.out.println(temp + " matches the card");
+							System.out.println("Computer plays: " + temp);
 							discardPile.setStyle("-fx-background-color: white");
 
 							discardPile.getChildren().add(temp.getImageView());
 							topContainer.getChildren().remove(i);
 							discard.addCard(temp);
 							computer.discard(i);
+							if (temp instanceof ErnieAndBert) {
+								Card tempCard = deck.drawTop();
+								deck.discard(0);
+
+								deckNum.setText(deck.getDeck().length + "");
+
+								bottomContainer.getChildren().add(tempCard.getImageView());
+								player.addCard(tempCard);
+								player.setValid(true);
+								// how to make player lose turn?
+							} else if (temp instanceof Oscar) {
+								for (int j = 0; j < 2; j++) {
+									Card tempCard = deck.drawTop();
+									deck.discard(0);
+
+									deckNum.setText(deck.getDeck().length + "");
+
+									bottomContainer.getChildren().add(tempCard.getImageView());
+									player.addCard(tempCard);
+								}
+
+								player.setValid(true);
+							} else {
+								player.setValid(false);
+							}
+
 							compValid = true;
 							break;
 						}
-						
-					}
 
-					if (!compValid) {
-						Card tempCard = deck.drawTop();
-						deck.discard(0);
+						if (!compValid) {
+							Card tempCard = deck.drawTop();
+							deck.discard(0);
 
-						deckNum.setText(deck.getDeck().length + "");
+							deckNum.setText(deck.getDeck().length + "");
 
-						topContainer.getChildren().add(tempCard.getBackView());
-						computer.addCard(tempCard);
+							topContainer.getChildren().add(tempCard.getBackView());
+							computer.addCard(tempCard);
+							System.out.println("--computer draws--");
+							player.setValid(false);
+							compValid = true;
+						}
+						if (computer.getHand().length == 0) {
+							gameOver.getChildren().add(computerWon);
+							primaryStage.setScene(end);
+						}
 					}
-					if (computer.getHand().length == 0) {
-						gameOver.getChildren().add(computerWon);
-						primaryStage.setScene(end);
-					}
-					System.out.println("Computer CARDS: " + computer.getHand().length);
-					player.setValid(false);
 
 				}
 			});
@@ -483,7 +535,7 @@ public class Main extends Application {
 			game.setTop(compScroll);
 			game.setCenter(center);
 			game.setBottom(userScroll);
-			
+
 			primaryStage.show();
 
 		} catch (Exception e) {
