@@ -32,6 +32,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+
+			Text computerWon = new Text("GAME OVER" + "\nCOMPUTER WON");
+			Text playerWon = new Text("GAME OVER" + "\nPLAYER WON");
+			StackPane gameOver = new StackPane();
+
+			Scene end = new Scene(gameOver,1400,100);
+
 			CardDeck first = new CardDeck();
 			first.reset();
 			Player player = new Player();
@@ -165,10 +172,6 @@ public class Main extends Application {
 			game.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
 			Scene playGame = new Scene(game, 1400, 1000);
-
-			continue_0.setOnAction(e -> {
-				primaryStage.setScene(playGame);
-			});
 
 			HBox center = new HBox();
 
@@ -328,10 +331,7 @@ public class Main extends Application {
 							middle.getChildren().remove(colorPicker);
 						});
 
-						System.out.println("ADDED TO DISCARD: " + discard.getLastCard());
-						if (player.getHand().length == 0) {
-							System.exit(0);
-						}
+
 						player.setValid(true);
 						player.setDrewCard(false);
 					} else if (selectedCard.equals(discard.getLastCard())) {
@@ -352,12 +352,73 @@ public class Main extends Application {
 
 			endTurn.setOnAction(e -> {
 				if (player.isValid()) {
-					System.out.println("ENDTURN PRESSED");
+					if (player.getHand().length == 0) {
+						gameOver.getChildren().add(playerWon);
+						primaryStage.setScene(end);
+					}System.out.println("PLAYER CARDS: " + player.getHand().length);
 
 					boolean compValid = false;
 					for (int i = 0; i < computer.getHand().length; i++) {
 						Card temp = computer.getHand()[i];
-						System.out.println(temp);
+						if (temp instanceof Wild) {
+							int color = (int) (Math.random() * 4);
+							if (color == 1) {
+								discardPile.setStyle("-fx-background-color: red");
+								((Wild) temp).setColor("red");
+							} else if (color == 2) {
+								discardPile.setStyle("-fx-background-color: yellow");
+								((Wild) temp).setColor("yellow");
+							} else if (color == 3) {
+								discardPile.setStyle("-fx-background-color: blue");
+								((Wild) temp).setColor("blue");
+							} else {
+								discardPile.setStyle("-fx-background-color: green");
+								((Wild) temp).setColor("green");
+							}
+							discardPile.getChildren().add(temp.getImageView());
+							topContainer.getChildren().remove(i);
+							discard.addCard(temp);
+							computer.discard(i);
+							compValid = true;
+							break;
+						} else if (temp.equals(discard.getLastCard())) {
+							System.out.println(temp + " matches the card");
+							discardPile.setStyle("-fx-background-color: white");
+
+							discardPile.getChildren().add(temp.getImageView());
+							topContainer.getChildren().remove(i);
+							discard.addCard(temp);
+							computer.discard(i);
+							compValid = true;
+							break;
+						}
+						
+					}
+
+					if (!compValid) {
+						Card tempCard = deck.drawTop();
+						deck.discard(0);
+
+						deckNum.setText(deck.getDeck().length + "");
+
+						topContainer.getChildren().add(tempCard.getBackView());
+						computer.addCard(tempCard);
+					}
+					if (computer.getHand().length == 0) {
+						gameOver.getChildren().add(computerWon);
+						primaryStage.setScene(end);
+					}
+					System.out.println("Computer CARDS: " + computer.getHand().length);
+					player.setValid(false);
+
+				}
+			});
+
+			continue_0.setOnAction(e -> {
+				if (computer.getTurn()) {
+					boolean compValid = false;
+					for (int i = 0; i < computer.getHand().length; i++) {
+						Card temp = computer.getHand()[i];
 						if (temp instanceof Wild) {
 							System.out.println(temp + " matches the card");
 
@@ -405,69 +466,12 @@ public class Main extends Application {
 					}
 
 					player.setValid(false);
-
 				}
+				primaryStage.setScene(playGame);
 			});
-
-			if (computer.getTurn()) {
-				boolean compValid = false;
-				for (int i = 0; i < computer.getHand().length; i++) {
-					Card temp = computer.getHand()[i];
-					System.out.println(temp);
-					if (temp instanceof Wild) {
-						System.out.println(temp + " matches the card");
-
-						int color = (int) (Math.random() * 4);
-						if (color == 1) {
-							discardPile.setStyle("-fx-background-color: red");
-							((Wild) temp).setColor("red");
-						} else if (color == 2) {
-							discardPile.setStyle("-fx-background-color: yellow");
-							((Wild) temp).setColor("yellow");
-						} else if (color == 3) {
-							discardPile.setStyle("-fx-background-color: blue");
-							((Wild) temp).setColor("blue");
-						} else {
-							discardPile.setStyle("-fx-background-color: green");
-							((Wild) temp).setColor("green");
-						}
-						discardPile.getChildren().add(temp.getImageView());
-						topContainer.getChildren().remove(i);
-						discard.addCard(temp);
-						computer.discard(i);
-						compValid = true;
-						break;
-					} else if (temp.equals(discard.getLastCard())) {
-						System.out.println(temp + " matches the card");
-						discardPile.setStyle("-fx-background-color: white");
-
-						discardPile.getChildren().add(temp.getImageView());
-						topContainer.getChildren().remove(i);
-						discard.addCard(temp);
-						computer.discard(i);
-						compValid = true;
-						break;
-					}
-				}
-
-				if (!compValid) {
-					Card tempCard = deck.drawTop();
-					deck.discard(0);
-
-					deckNum.setText(deck.getDeck().length + "");
-
-					topContainer.getChildren().add(tempCard.getBackView());
-					computer.addCard(tempCard);
-				}
-
-				player.setValid(false);
-			}
 
 			middle.setAlignment(Pos.CENTER);
 			middle.setSpacing(50);
-			// middle.setBackground(new Background(new
-			// BackgroundFill(Color.BLUE, null, null)));
-
 			middle.getChildren().add(draw);
 			middle.getChildren().add(endTurn);
 
@@ -479,21 +483,7 @@ public class Main extends Application {
 			game.setTop(compScroll);
 			game.setCenter(center);
 			game.setBottom(userScroll);
-
-			/**
-			 * //FIXME for(int i = 0; i < bottomContainer.getChildren().size();
-			 * i++){ bottomContainer.getChildren().get(0).setOnMouseClicked(e ->
-			 * { Card tempCard = player.getHand()[0]; player.discard(0);
-			 * discard.addCard(tempCard);
-			 * 
-			 * bottomContainer.getChildren().remove(0);
-			 * discardPile.getChildren().add(tempCard.getImageView()); });
-			 * 
-			 * }
-			 */
-
-			// how to implement this for all nodes??
-
+			
 			primaryStage.show();
 
 		} catch (Exception e) {
