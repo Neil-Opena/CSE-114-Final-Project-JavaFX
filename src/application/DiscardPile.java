@@ -40,4 +40,11 @@ public class DiscardPile {
 	public Card getLastCard(){
 		return deck[deck.length - 1];
 	}
+	
+	public void removeNull(){
+		Card[] temp = new Card[1];
+		temp[0] = deck[deck.length - 1];
+		
+		deck = temp;
+	}
 }
