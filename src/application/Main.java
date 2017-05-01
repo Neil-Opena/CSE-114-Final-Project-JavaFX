@@ -468,6 +468,7 @@ public class Main extends Application {
 								bottomContainer.getChildren().add(tempCard.getImageView());
 								player.addCard(tempCard);
 								player.setValid(true);
+								player.setDrewCard(false);
 								// how to make player lose turn?
 							} else if (temp instanceof Oscar) {
 								for (int j = 0; j < 2; j++) {
@@ -483,6 +484,7 @@ public class Main extends Application {
 								}
 
 								player.setValid(true);
+								player.setDrewCard(false);
 							} else {
 								player.setValid(false);
 							}
