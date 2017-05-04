@@ -448,6 +448,8 @@ public class Main extends Application {
 							discard.addCard(temp);
 							computer.discard(i);
 							compValid = true;
+							//FIXME here
+							player.setValid(false);
 							break;
 						} else if (temp.equals(discard.getLastCard())) {
 							System.out.println("Computer plays: " + temp);
@@ -543,6 +545,8 @@ public class Main extends Application {
 							discard.addCard(temp);
 							computer.discard(i);
 							compValid = true;
+							//FIXME here
+							player.setValid(false);
 							break;
 						} else if (temp.equals(discard.getLastCard())) {
 							System.out.println(temp + " matches the card");
