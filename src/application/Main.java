@@ -50,8 +50,7 @@ public class Main extends Application {
 			final double WIDTH = 583.0 / 3;
 
 			// IMAGES and ImageViews
-			Image cardBack = new Image(
-					"file:FinalProjectAssets\\back.jpg");
+			Image cardBack = new Image("file:FinalProjectAssets\\back.jpg");
 			ImageView cardBackView = new ImageView(cardBack);
 			cardBackView.setFitHeight(HEIGHT);
 			cardBackView.setFitWidth(WIDTH);

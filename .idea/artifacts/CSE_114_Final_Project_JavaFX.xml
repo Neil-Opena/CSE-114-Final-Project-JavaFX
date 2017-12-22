@@ -15,6 +15,7 @@
       <element id="archive" name="CSE_114_Final_Project_JavaFX.jar">
         <element id="module-output" name="CSE-114-Final-Project-JavaFX" />
       </element>
+      <element id="dir-copy" path="$PROJECT_DIR$/FinalProjectAssets" />
     </root>
   </artifact>
 </component>
