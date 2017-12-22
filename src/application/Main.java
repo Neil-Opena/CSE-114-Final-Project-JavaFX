@@ -34,7 +34,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
 			Text computerWon = new Text("GAME OVER" + "\nCOMPUTER WON");
 			Text playerWon = new Text("GAME OVER" + "\nPLAYER WON");
 			StackPane gameOver = new StackPane();

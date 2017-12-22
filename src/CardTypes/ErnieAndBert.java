@@ -9,15 +9,15 @@ public class ErnieAndBert extends Card implements Special{
 	private final int NUMBER = 100;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:C:\\Users\\neil1\\Stony Brook University\\OneDrive - Stony Brook University\\Freshman Year 2016-17\\Spring 2017\\CSE 114\\CSE-114-Final-Project-JavaFX\\FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public ErnieAndBert(String color){
 		COLOR = color;
 		if(color.equals("red")){
-			img = new Image("file:C:\\Users\\neil1\\Stony Brook University\\OneDrive - Stony Brook University\\Freshman Year 2016-17\\Spring 2017\\CSE 114\\CSE-114-Final-Project-JavaFX\\FinalProjectAssets\\1_plus_red.jpg");
+			img = new Image("file:FinalProjectAssets\\1_plus_red.jpg");
 		}else{
-			img = new Image("file:C:\\Users\\neil1\\Stony Brook University\\OneDrive - Stony Brook University\\Freshman Year 2016-17\\Spring 2017\\CSE 114\\CSE-114-Final-Project-JavaFX\\FinalProjectAssets\\1_plus_blue.jpg");
+			img = new Image("file:FinalProjectAssets\\1_plus_blue.jpg");
 		}
 		
 		cardView = new ImageView(img);
