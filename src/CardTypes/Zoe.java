@@ -8,19 +8,19 @@ public class Zoe extends Card {
 	private final int NUMBER = 2;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public Zoe(String color){
 		COLOR = color;
 		if(color.equals("red")){
-			img = new Image("file:FinalProjectAssets\\2_red.jpg");
+			img = new Image("file:2_red.jpg");
 		}else if(color.equals("yellow")){
-			img = new Image("file:FinalProjectAssets\\2_yellow.jpg");
+			img = new Image("file:2_yellow.jpg");
 		}else if(color.equals("blue")){
-			img = new Image("file:FinalProjectAssets\\2_blue.jpg");
+			img = new Image("file:2_blue.jpg");
 		}else{
-			img = new Image("file:FinalProjectAssets\\2_green.jpg");
+			img = new Image("file:2_green.jpg");
 		}
 		
 		cardView = new ImageView(img);

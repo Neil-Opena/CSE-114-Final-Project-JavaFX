@@ -8,19 +8,19 @@ public class CookieMonster extends Card {
 	private final int NUMBER = 3;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public CookieMonster(String color){
 		COLOR = color;
 		if(color.equals("red")){
-			img = new Image("file:FinalProjectAssets\\3_red.jpg");
+			img = new Image("file:3_red.jpg");
 		}else if(color.equals("yellow")){
-			img = new Image("file:FinalProjectAssets\\3_yellow.jpg");
+			img = new Image("file:3_yellow.jpg");
 		}else if(color.equals("blue")){
-			img = new Image("file:FinalProjectAssets\\3_blue.jpg");
+			img = new Image("file:3_blue.jpg");
 		}else{
-			img = new Image("file:FinalProjectAssets\\3_green.jpg");
+			img = new Image("file:3_green.jpg");
 		}
 		
 		cardView = new ImageView(img);

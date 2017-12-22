@@ -9,15 +9,15 @@ public class Oscar extends Card implements Special{
 	private final String SPECIAL = "Choose who to draw 2";
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public Oscar(String color){
 		COLOR = color;
 		if(color.equals("yellow")){
-			img = new Image("file:FinalProjectAssets\\2_plus_yellow.jpg");
+			img = new Image("file:2_plus_yellow.jpg");
 		}else{
-			img = new Image("file:FinalProjectAssets\\2_plus_green.jpg");
+			img = new Image("file:2_plus_green.jpg");
 		}
 		
 		cardView = new ImageView(img);

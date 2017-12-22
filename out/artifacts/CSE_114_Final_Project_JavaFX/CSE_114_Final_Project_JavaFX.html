@@ -1,0 +1,43 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'CSE_114_Final_Project_JavaFX.jnlp'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedCSE_114_Final_Project_JavaFX_id() {
+        dtjava.embed(
+            {
+                id : 'CSE_114_Final_Project_JavaFX_id',
+                url : 'CSE_114_Final_Project_JavaFX.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '600',
+                height : '400'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedCSE_114_Final_Project_JavaFX_id);
+</script>
+
+</head><body>
+<h2>Test page for <b>CSE-114-Final-Project-JavaFX</b></h2>
+  <b>Webstart:</b> <a href='CSE_114_Final_Project_JavaFX.jnlp' onclick="return launchApplication('CSE_114_Final_Project_JavaFX.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>

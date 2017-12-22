@@ -8,11 +8,11 @@ public class Wild extends Card{
 	private String color = null;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public Wild() {
-		img = new Image("file:FinalProjectAssets\\wild.jpg");
+		img = new Image("file:wild.jpg");
 		cardView = new ImageView(img);
 		cardView.setFitHeight(847.0/3);
 		cardView.setFitWidth(583.0/3);

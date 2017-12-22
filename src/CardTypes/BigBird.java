@@ -8,19 +8,19 @@ public class BigBird extends Card{
 	private final int NUMBER = 1;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public BigBird(String color){
 		COLOR = color;
 		if(color.equals("red")){
-			img = new Image("file:FinalProjectAssets\\1_red.jpg");
+			img = new Image("file:1_red.jpg");
 		}else if(color.equals("yellow")){
-			img = new Image("file:FinalProjectAssets\\1_yellow.jpg");
+			img = new Image("file:1_yellow.jpg");
 		}else if(color.equals("blue")){
-			img = new Image("file:FinalProjectAssets\\1_blue.jpg");
+			img = new Image("file:1_blue.jpg");
 		}else{
-			img = new Image("file:FinalProjectAssets\\1_green.jpg");
+			img = new Image("file:1_green.jpg");
 		}
 		
 		cardView = new ImageView(img);

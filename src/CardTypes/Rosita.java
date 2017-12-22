@@ -8,19 +8,19 @@ public class Rosita extends Card{
 	private final int NUMBER = 6;
 	private Image img;
 	private ImageView cardView;
-	private Image back = new Image("file:FinalProjectAssets\\back.jpg");
+	private Image back = new Image("file:back.jpg");
 	private ImageView backView = new ImageView(back);
 	
 	public Rosita(String color){
 		COLOR = color;
 		if(color.equals("red")){
-			img = new Image("file:FinalProjectAssets\\6_red.jpg");
+			img = new Image("file:6_red.jpg");
 		}else if(color.equals("yellow")){
-			img = new Image("file:FinalProjectAssets\\6_yellow.jpg");
+			img = new Image("file:6_yellow.jpg");
 		}else if(color.equals("blue")){
-			img = new Image("file:FinalProjectAssets\\6_blue.jpg");
+			img = new Image("file:6_blue.jpg");
 		}else{
-			img = new Image("file:FinalProjectAssets\\6_green.jpg");
+			img = new Image("file:6_green.jpg");
 		}
 		
 		cardView = new ImageView(img);
