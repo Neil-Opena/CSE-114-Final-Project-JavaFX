@@ -1,4 +1,7 @@
 # CSE-114-Final-Project-JavaFX
 
-In order to run the application, download the ZIP and extract the files. Run the Executable
-JAR file to run the game.
+1. Download the latest Release
+2. Extract the zip file
+3. Go to out/artifacts/CSE_114_Final_Project_JavaFX
+4. Click on the Executable JAR file to run
+5. Enjoy! :)
