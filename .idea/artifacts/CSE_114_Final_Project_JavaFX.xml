@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CSE-114-Final-Project-JavaFX">
+    <output-path>$PROJECT_DIR$/out/artifacts/CSE_114_Final_Project_JavaFX</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="application.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="CSE 114 Final Project" />
+        <option name="vendor" value="Neil Opena" />
+        <option name="version" value="1.1" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="CSE_114_Final_Project_JavaFX.jar">
+        <element id="module-output" name="CSE-114-Final-Project-JavaFX" />
+      </element>
+    </root>
+  </artifact>
+</component>
