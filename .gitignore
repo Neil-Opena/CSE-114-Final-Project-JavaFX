@@ -1,2 +1,4 @@
 /bin/
 .idea/workspace.xml
+/nbproject/private/
+/build/

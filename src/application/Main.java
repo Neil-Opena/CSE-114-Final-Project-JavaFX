@@ -52,7 +52,7 @@ public class Main extends Application {
 
 			// IMAGES and ImageViews
 			Image cardBack = new Image(
-					"file:C:\\Users\\neil1\\Stony Brook University\\OneDrive - Stony Brook University\\Freshman Year 2016-17\\Spring 2017\\CSE 114\\CSE-114-Final-Project-JavaFX\\FinalProjectAssets\\back.jpg");
+					"file:FinalProjectAssets\\back.jpg");
 			ImageView cardBackView = new ImageView(cardBack);
 			cardBackView.setFitHeight(HEIGHT);
 			cardBackView.setFitWidth(WIDTH);
