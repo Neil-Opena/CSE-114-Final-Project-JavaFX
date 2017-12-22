@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_cse-114-final-project-javafx" default="compile.module.cse-114-final-project-javafx">
+  <dirname property="module.cse-114-final-project-javafx.basedir" file="${ant.file.module_cse-114-final-project-javafx}"/>
+  
+  <property name="module.jdk.home.cse-114-final-project-javafx" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.cse-114-final-project-javafx" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.cse-114-final-project-javafx" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.cse-114-final-project-javafx" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="cse-114-final-project-javafx.output.dir" value="${module.cse-114-final-project-javafx.basedir}/bin"/>
+  <property name="cse-114-final-project-javafx.testoutput.dir" value="${module.cse-114-final-project-javafx.basedir}/bin"/>
+  
+  <path id="cse-114-final-project-javafx.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="cse-114-final-project-javafx.module.production.classpath">
+    <path refid="${module.jdk.classpath.cse-114-final-project-javafx}"/>
+  </path>
+  
+  <path id="cse-114-final-project-javafx.runtime.production.module.classpath">
+    <pathelement location="${cse-114-final-project-javafx.output.dir}"/>
+  </path>
+  
+  <path id="cse-114-final-project-javafx.module.classpath">
+    <pathelement location="${cse-114-final-project-javafx.output.dir}"/>
+    <path refid="${module.jdk.classpath.cse-114-final-project-javafx}"/>
+  </path>
+  
+  <path id="cse-114-final-project-javafx.runtime.module.classpath">
+    <pathelement location="${cse-114-final-project-javafx.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.cse-114-final-project-javafx">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.cse-114-final-project-javafx">
+    <patternset refid="excluded.from.module.cse-114-final-project-javafx"/>
+  </patternset>
+  
+  <path id="cse-114-final-project-javafx.module.sourcepath">
+    <dirset dir="${module.cse-114-final-project-javafx.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.cse-114-final-project-javafx" depends="compile.module.cse-114-final-project-javafx.production,compile.module.cse-114-final-project-javafx.tests" description="Compile module CSE-114-Final-Project-JavaFX"/>
+  
+  <target name="compile.module.cse-114-final-project-javafx.production" depends="register.custom.compilers" description="Compile module CSE-114-Final-Project-JavaFX; production classes">
+    <mkdir dir="${cse-114-final-project-javafx.output.dir}"/>
+    <javac2 destdir="${cse-114-final-project-javafx.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.cse-114-final-project-javafx}/javac">
+      <compilerarg line="${compiler.args.cse-114-final-project-javafx}"/>
+      <bootclasspath refid="cse-114-final-project-javafx.module.bootclasspath"/>
+      <classpath refid="cse-114-final-project-javafx.module.production.classpath"/>
+      <src refid="cse-114-final-project-javafx.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.cse-114-final-project-javafx"/>
+    </javac2>
+    
+    <copy todir="${cse-114-final-project-javafx.output.dir}">
+      <fileset dir="${module.cse-114-final-project-javafx.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.cse-114-final-project-javafx.tests" depends="register.custom.compilers,compile.module.cse-114-final-project-javafx.production" description="compile module CSE-114-Final-Project-JavaFX; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.cse-114-final-project-javafx" description="cleanup module">
+    <delete dir="${cse-114-final-project-javafx.output.dir}"/>
+    <delete dir="${cse-114-final-project-javafx.testoutput.dir}"/>
+  </target>
+</project>
